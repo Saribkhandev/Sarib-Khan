@@ -1,0 +1,190 @@
+{{ "img-banner.css" |  asset_url |  stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{%- liquid
+  assign height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio | round
+  if section.settings.image_behavior == 'ambient'
+    assign sizes = '120vw'
+    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
+  else
+    assign sizes = '100vw'
+    assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+  endif
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="section-{{ section.id }}-padding">
+    <!-- Full Width Top Image -->
+    <div class="img-banner__top-media media small-hide">
+      {{
+        section.settings.image
+        | image_url: width: 3840
+        | image_tag:
+          width: section.settings.image.width,
+          height: height,
+          class: "img-banner__image",
+          sizes: sizes,
+          widths: widths,
+          fetchpriority: fetch_priority
+      }}
+    </div>
+
+    <!-- Content and Side Image Grid -->
+    <div class="img-banner__content-grid">
+      <!-- Left Content -->
+      <div class="img-banner__content">
+        <div class="img-banner__content-wrapper">
+          <h2 class="img-banner__heading">
+            {{ section.settings.heading }}
+          </h2>
+          
+          <div class="img-banner__description rte small-hide">
+            {{ section.settings.richtext }}
+          </div>
+          <div class="img-banner__description rte large-up-hide">
+            {{ section.settings.richtext_mobile }}
+          </div>
+          <a href="{{ section.settings.button_link }}" class="button button--primary img-banner__button small-hide">
+            <span>{{ section.settings.button_text }}</span>
+            <span class="svg-wrapper">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Image 16:9 -->
+      {% if section.settings.side_image %}
+        <div class="img-banner__right-banner">
+          <div class="media media--16-9">
+            {{
+              section.settings.side_image
+              | image_url: width: 1000
+              | image_tag:
+                width: section.settings.side_image.width,
+                height: section.settings.side_image.height,
+                class: "img-banner__side-image",
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                widths: '375, 550, 750, 1100, 1500'
+            }}
+          </div>
+
+          <div class="img-banner__mobile-wrapper large-up-hide">
+            <a href="{{ section.settings.button_link }}" class="button button--primary img-banner__button ">
+              <span>{{ section.settings.button_text }}</span>
+              <span class="svg-wrapper">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+            </a>
+          </div>
+
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="img-banner__annoucement">
+      <p class="img-banner_annoucement-text small-hide">{{ section.settings.annoucement_text }}</p>
+      <p class="img-banner_annoucement-text large-up-hide">{{ section.settings.annoucement_text_mobile }}</p>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Img Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "richtext",
+      "label": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "richtext_mobile",
+      "label": "Description (Mobile)"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "annoucement_text",
+      "label": "Annoucement Text"
+    },
+    {
+      "type": "text",
+      "id": "annoucement_text_mobile",
+      "label": "Annoucement Text (Mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image",
+      "label": "Side Image (16:9)"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Img Banner"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,135 @@
+
+/* Banner Images */
+.img-banner__top-media {
+  overflow: hidden;
+  padding-bottom: 27%;
+  border-radius: var(--media-radius, 0);
+}
+
+.img-banner__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Content and Grid Layout */
+  
+.img-banner__content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.img-banner__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2rem;
+  height: 100%;
+}
+
+.img-banner__heading {
+  font-size: 6.7rem;
+  margin: 0;
+  line-height: 100%;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+.img-banner__description {
+  line-height: 140%;
+}
+
+.img-banner__button {
+  text-transform: uppercase;
+  gap: 2rem;
+}
+
+/* Grid Layout */
+.img-banner__side-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Media 16:9 aspect ratio */
+.media--16-9 {
+  position: relative;
+  padding-bottom: 45.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.media--16-9 img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-banner_annoucement-text {
+  text-align: center;
+  background: #F5F5F5;
+  margin: 0;
+  padding: 1rem;
+}
+/* Responsive adjustments */
+@media screen and (max-width: 749px) {
+  .img-banner__content-wrapper {
+    padding: 5rem 1.6rem 1.2rem;
+    min-height: auto;
+  }
+
+  .img-banner__heading {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .img-banner__description {
+    text-align: center;
+    max-width: 28rem;
+    font-size: 1.6rem;
+    margin: 0 auto;
+  }
+
+  .img-banner__right-banner .media {
+    padding-bottom: 71%;
+  }
+
+  .img-banner__right-banner {
+    position: relative;
+  }
+
+  .img-banner__mobile-wrapper.large-up-hide {
+    position: absolute;
+    width: 100%;
+    bottom: 8%;
+    text-align: center;
+  }
+
+  .img-banner_annoucement-text {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .img-banner__content-wrapper {
+    padding: 3.5rem 2.4rem 5rem 6.7rem;
+    align-items: flex-start;
+    gap: 5rem;
+  }
+
+  .img-banner__content-grid {
+    display: grid;
+    grid-template-columns: 1.23fr 2fr;
+  }
+
+  .img-banner__description {
+    font-size: 2rem;
+  }
+}
+
+

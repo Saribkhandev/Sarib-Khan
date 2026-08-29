@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lustria&display=swap');
+
 product-component,
 collection-component {
   display: block;
@@ -1164,7 +1166,7 @@ summary::-webkit-details-marker {
 }
 
 .media--16-9 {
-  padding-bottom: 56.25%;
+  padding-bottom: 18%;
 }
 
 .media--circle {
@@ -1220,7 +1222,7 @@ button.shopify-payment-button__button--unbranded {
 .customer button,
 button.shopify-payment-button__button--unbranded {
   min-width: calc(12rem + var(--buttons-border-width) * 2);
-  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
+  min-height: calc(4.2rem + var(--buttons-border-width) * 2);
 }
 
 .button,
@@ -1315,8 +1317,8 @@ button.shopify-payment-button__button--unbranded {
 .button-label,
 .shopify-challenge__button,
 .customer button {
-  font-size: 1.5rem;
-  letter-spacing: 0.1rem;
+  font-size: 1.6rem;
+  letter-spacing: 0;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
 }
 
@@ -2367,6 +2369,7 @@ input[type='checkbox'] {
 
 .header {
   display: grid;
+  display: none;
   grid-template-areas: 'left-icons heading icons';
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;

@@ -1,0 +1,191 @@
+{{ "header-prime.css" |  asset_url |  stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
+    padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <header class="custom-header">
+    <div class="custom-header__wrapper">
+      <button type="button" class="custom-header__hamberger large-up-hide" aria-label="Open menu" aria-controls="custom-mobile-menu" aria-expanded="false">
+        <span class="custom-header__menu-icon custom-header__menu-icon--hamburger" aria-hidden="true">{{ 'icon-hamburger-custom.svg' | inline_asset_content }}</span>
+        <span class="custom-header__menu-icon custom-header__menu-icon--close" aria-hidden="true">{{ 'icon-close.svg' | inline_asset_content }}</span>
+      </button>
+      {% if section.settings.logo %}
+        <div class="custom-header__logo">
+          {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio -%}
+          {% capture sizes %}(max-width: {{ section.settings.logo_width | times: 2 }}px) 50vw, {{ section.settings.logo_width }}px{% endcapture %}
+          {% capture widths %}{{ section.settings.logo_width }}, {{ section.settings.logo_width | times: 1.5 | round }}, {{ section.settings.logo_width | times: 2 }}{% endcapture %}
+          {{
+            section.settings.logo
+            | image_url: width: 600
+            | image_tag:
+              class: 'custom-header__heading-logo motion-reduce',
+              widths: widths,
+              height: logo_height,
+              width: section.settings.logo_width,
+              alt: logo_alt,
+              sizes: sizes,
+              preload: true
+          }}
+        </div>
+      {% endif %}
+      <p class="custom-header__content medium-hide small-hide">{{ section.settings.content }}</p>
+      <a href="{{ section.settings.button_link }}" class="button button--primary small-hide">
+        <span>{{ section.settings.button_text }}</span>
+        <span class="svg-wrapper">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+      </a>
+    </div>
+  </header>
+</div>
+<div id="custom-mobile-menu" class="custom-mobile-menu" hidden>
+  <div class="custom-mobile-menu__backdrop" data-custom-menu-close></div>
+  <aside class="custom-mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Mobile menu" tabindex="-1">
+    <div class="custom-mobile-menu__gift">
+      <p>{{ section.settings.mobile_content }}</p>
+      <a href="{{ section.settings.mobile_button_link | default: section.settings.button_link }}" class="custom-mobile-menu__gift-button">
+        <span>{{ section.settings.mobile_button_text | default: section.settings.button_text }}</span>
+        <span class="svg-wrapper">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+      </a>
+    </div>
+  </aside>
+</div>
+<script>
+  (() => {
+    const header = document.currentScript.previousElementSibling.previousElementSibling;
+    const trigger = header?.querySelector('.custom-header__hamberger');
+    const menu = document.getElementById('custom-mobile-menu');
+    const panel = menu?.querySelector('.custom-mobile-menu__panel');
+    if (!trigger || !menu || !panel) return;
+    const closeMenu = () => {
+      menu.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('overflow-hidden');
+      setTimeout(() => { menu.hidden = true; }, 250);
+    };
+    trigger.addEventListener('click', () => {
+      if (menu.classList.contains('is-open')) {
+        closeMenu();
+        return;
+      }
+      menu.style.top = `${header.getBoundingClientRect().bottom}px`;
+      menu.hidden = false;
+      requestAnimationFrame(() => menu.classList.add('is-open'));
+      trigger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('overflow-hidden');
+      panel.focus();
+    });
+    menu.querySelectorAll('[data-custom-menu-close]').forEach((element) => element.addEventListener('click', closeMenu));
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+  })();
+</script>
+{% schema %}
+{
+  "name": "Header Prime",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 200
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "link_list",
+      "id": "mobile_menu",
+      "label": "Mobile Menu"
+    },
+    {
+      "type": "text",
+      "id": "mobile_content",
+      "label": "Mobile Menu Message",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "mobile_button_text",
+      "label": "Mobile Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "mobile_button_link",
+      "label": "Mobile Button Link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header Prime"
+    }
+  ]
+}
+{% endschema %}

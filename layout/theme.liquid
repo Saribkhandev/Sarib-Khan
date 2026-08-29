@@ -119,7 +119,7 @@
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75);
+        color: rgb(var(--color-foreground));
         background-color: rgb(var(--color-background));
       }
 
@@ -264,8 +264,8 @@
         min-height: 100%;
         margin: 0;
         font-size: 1.5rem;
-        letter-spacing: 0.06rem;
-        line-height: calc(1 + 0.8 / var(--font-body-scale));
+        letter-spacing: 0;
+        line-height: 100%;
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
@@ -401,5 +401,14 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+      window.complementaryAutoCart = {
+        complementaryProductId: {{ settings.complementary_product.id | default: 0 }},
+        complementaryProductHandle: {{ settings.complementary_product.handle | json }},
+        complementaryVariantId: {{ settings.complementary_product.selected_or_first_available_variant.id | default: settings.complementary_product.variants.first.id | default: 0 }}
+      };
+    </script>
+    <script src="{{ 'complementary-product.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
