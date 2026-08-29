@@ -1466,5 +1466,16 @@
         "label": "t:settings_schema.customer_accounts.settings.customer_account_menu.label"
       }
     ]
-  }
+  },
+  {
+    "name": "Complementary Auto Cart",
+    "settings": [
+      {
+        "type": "product",
+        "id": "complementary_product",
+        "label": "Product to add automatically",
+        "info": "Choose the product that should be added when a Black + Medium variant is added to the cart."
+      }
+    ]
+  },
 ]

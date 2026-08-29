@@ -11,13 +11,102 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "img_banner_4T3tMM": {
+      "type": "img-banner",
+      "name": "Img Banner",
+      "settings": {
+        "image": "shopify://shop_images/Frame.png",
+        "heading": "The Gift Guide",
+        "richtext": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
+        "richtext_mobile": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>",
+        "button_text": "Shop Now",
+        "button_link": "#",
+        "annoucement_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "annoucement_text_mobile": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
+        "side_image": "shopify://shop_images/Frame_1.png",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 40
+      }
+    },
+    "products_gallery_bx4x9b": {
+      "type": "products-gallery",
+      "blocks": {
+        "product_yFnTyP": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag",
+            "hotspot_x": 61,
+            "hotspot_y": 56
+          }
+        },
+        "product_xKtAtH": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo",
+            "hotspot_x": 86,
+            "hotspot_y": 51
+          }
+        },
+        "product_4B6M87": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt",
+            "hotspot_x": 64,
+            "hotspot_y": 23
+          }
+        },
+        "product_6J9PkU": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket",
+            "hotspot_x": 72,
+            "hotspot_y": 28
+          }
+        },
+        "product_fJj8rt": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top",
+            "hotspot_x": 49,
+            "hotspot_y": 26
+          }
+        },
+        "product_mxrpRE": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top",
+            "hotspot_x": 76,
+            "hotspot_y": 42
+          }
+        }
+      },
+      "block_order": [
+        "product_yFnTyP",
+        "product_xKtAtH",
+        "product_4B6M87",
+        "product_6J9PkU",
+        "product_fJj8rt",
+        "product_mxrpRE"
+      ],
+      "name": "Product Gallery",
+      "settings": {
+        "heading": "Tisso vison in the wild",
+        "color_scheme": "scheme-2",
+        "padding_top": 40,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "img_banner_4T3tMM",
+    "products_gallery_bx4x9b"
   ]
 }

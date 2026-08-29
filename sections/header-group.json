@@ -25,6 +25,7 @@
       "block_order": [
         "announcement-bar-0"
       ],
+      "disabled": true,
       "settings": {
         "auto_rotate": false,
         "change_slides_speed": 5,
@@ -52,10 +53,30 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "header_prime_FdJGKj": {
+      "type": "header-prime",
+      "name": "Header Prime",
+      "settings": {
+        "logo": "shopify://shop_images/Group_1000007777.png",
+        "logo_width": 152,
+        "heading": "",
+        "content": "Find the ideal gift for your loved ones.",
+        "button_text": "CHOOSE GIFT",
+        "button_link": "",
+        "mobile_menu": "",
+        "mobile_content": "Find the ideal gift for your loved ones.",
+        "mobile_button_text": "CHOOSE GIFT",
+        "mobile_button_link": "",
+        "color_scheme": "scheme-da45d314-f632-4aff-84ac-ed9889aeee85",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "header_prime_FdJGKj"
   ]
 }
