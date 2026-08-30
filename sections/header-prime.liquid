@@ -12,7 +12,7 @@
     }
   }
 {%- endstyle -%}
-<div class="color-{{ section.settings.color_scheme }} gradient" {% if template.name != "index"%}style="display: none !important;"{% endif %}>
+<div class="color-{{ section.settings.color_scheme }} gradient" {% if template.name == "index"%}style="display: none !important;"{% endif %}>
   <header class="custom-header">
     <div class="custom-header__wrapper">
       <button type="button" class="custom-header__hamberger large-up-hide" aria-label="Open menu" aria-controls="custom-mobile-menu" aria-expanded="false">

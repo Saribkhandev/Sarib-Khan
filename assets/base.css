@@ -1292,6 +1292,63 @@ button.shopify-payment-button__button--unbranded {
   --border-opacity: var(--buttons-border-opacity);
 }
 
+.button--primary {
+  font-size: 1.6rem;
+  text-align: center;
+  --transform-origin-start: left;
+  --transform-origin-end: right;
+  transition: background-size var(--duration-medium) cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    background-position var(--duration-medium) step-end,
+    color var(--duration-medium) cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    border var(--duration-medium) cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --initial-gradient: linear-gradient(rgb(var(--color-button)), rgb(var(--color-button)));
+  --hover-gradient: linear-gradient(transparent, transparent);
+  --initial-background-position: var(--transform-origin-end);
+  --hover-background-position: var(--transform-origin-start);
+  background-color: transparent;
+  background-image: var(--initial-gradient), var(--hover-gradient);
+  background-size: 101% 101%, 0 101%;
+  background-position: var(--initial-background-position);
+  background-repeat: no-repeat;
+}
+
+.button--secondary {
+  font-size: 1.6rem;
+  --transform-origin-start: left;
+  --transform-origin-end: right;
+  transition: background-size var(--duration-medium) cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    background-position var(--duration-medium) step-end,
+    color var(--duration-medium) cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    border var(--duration-medium) cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --initial-gradient: linear-gradient(transparent, transparent);
+  --hover-gradient: linear-gradient(rgb(var(--color-button-text)), rgb(var(--color-button-text)));
+  --initial-background-position: var(--transform-origin-end);
+  --hover-background-position: var(--transform-origin-start);
+  background-color: var(--color-button-bg, transparent);
+  background-image: var(--initial-gradient), var(--hover-gradient);
+  background-size: 101% 101%, 0 101%;
+  background-position: var(--initial-background-position);
+  background-repeat: no-repeat;
+}
+
+.button--secondary:hover {
+  color: rgb(var(--color-button));
+  background-position: var(--hover-background-position);
+  border-color: rgb(var(--color-button));
+  background-size: 0 101%, 101% 101%;
+}
+
+.button--primary:hover,
+.button:hover,
+.shopify-challenge__button:hover,
+.customer button:hover,
+button.shopify-payment-button__button--unbranded:hover {
+  color: rgb(var(--color-button));
+  background-position: var(--hover-background-position);
+  border-color: rgb(var(--color-button));
+  background-size: 0 101%, 101% 101%;
+}
+
 .button:focus-visible,
 .button:focus,
 .button.focused,

@@ -19,7 +19,6 @@
     },
     "img_banner_4T3tMM": {
       "type": "img-banner",
-      "disabled": true,
       "name": "Img Banner",
       "settings": {
         "image": "shopify://shop_images/Frame.png",
@@ -31,7 +30,7 @@
         "annoucement_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
         "annoucement_text_mobile": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
         "side_image": "shopify://shop_images/Frame_1.png",
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "padding_top": 0,
         "padding_bottom": 40
       }
@@ -96,7 +95,6 @@
         "product_fJj8rt",
         "product_mxrpRE"
       ],
-      "disabled": true,
       "name": "Product Gallery",
       "settings": {
         "heading": "Tisso vison in the wild",
